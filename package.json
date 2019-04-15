@@ -1,0 +1,18 @@
+{
+	"name": "sipgateio-sendsms-node",
+	"version": "1.0.0",
+	"description": "A demonstration of how to send SMS using the sipgate REST.",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"keywords": [],
+	"author": "sipgate",
+	"engines": {
+		"node": "10.15.3"
+	},
+	"license": "Unlicense",
+	"dependencies": {
+		"axios": "^0.18.0"
+	}
+}
