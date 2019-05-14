@@ -105,6 +105,7 @@ const requestOptions = {
 	data,
 };
 ```
+> If OAuth should be used for `Authorization` instead of Basic Auth we do not suply the auth object in the request options. Instead we set the authorization header to `Bearer` followed by a space and the access token: `Authorization: \`Bearer ${accessToken}\`,`. For an example application interacting with the sipgate API using OAuth see our [sipgate.io Node.js Oauth example](https://github.com/sipgate-io/sipgateio-oauth-node)
 
 The `axios` instance takes the request URL and `requestOptions` as arguments and process the desired http request. The request URL consists of the base URL defined above and the endpoint `/sessions/sms`.
 
