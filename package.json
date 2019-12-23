@@ -7,12 +7,13 @@
 		"start": "node index.js"
 	},
 	"keywords": [],
-	"author": "sipgate",
+	"author": "sipgate.io Team <io-team@sipgate.de>",
+	"repository": "https://github.com/sipgate-io/sipgateio-sendsms-node",
 	"engines": {
 		"node": "10.15.3"
 	},
 	"license": "Unlicense",
 	"dependencies": {
-		"axios": "^0.18.0"
+		"axios": "^0.18.1"
 	}
 }
