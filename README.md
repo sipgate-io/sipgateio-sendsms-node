@@ -30,6 +30,8 @@ const message = "YOUR_MESSAGE";
 
 const smsId = "YOUR_SIPGATE_SMS_EXTENSION";
 ```
+The token should have the `sessions:sms:write` scope. For more information about personal access tokens visit https://www.sipgate.io/rest-api/authentication#personalAccessToken.
+
 
 The `smsId` uniquely identifies the extension from which you wish to send your message. Further explanation is given in the section [Web SMS Extensions](#web-sms-extensions).
 
