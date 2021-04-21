@@ -23,12 +23,12 @@ npm install
 In order to run the code you have to set the following variables in [index.js](./index.js):
 
 ```javascript
-const username = 'YOUR_SIPGATE_EMAIL';
-const password = 'YOUR_SIPGATE_PASSWORD';
-const recipient = 'RECIPIENT_PHONE_NUMBER';
-const message = 'YOUR_MESSAGE';
+const tokenId = "YOUR_SIPGATE_TOKEN_ID";
+const token = "YOUR_SIPGATE_TOKEN";
+const recipient = "RECIPIENT_PHONE_NUMBER";
+const message = "YOUR_MESSAGE";
 
-const smsId = 'YOUR_SIPGATE_SMS_EXTENSION';
+const smsId = "YOUR_SIPGATE_SMS_EXTENSION";
 ```
 
 The `smsId` uniquely identifies the extension from which you wish to send your message. Further explanation is given in the section [Web SMS Extensions](#web-sms-extensions).
@@ -37,7 +37,7 @@ The `smsId` uniquely identifies the extension from which you wish to send your m
 > In order to send a delayed message uncomment the following line and set the desired date and time in the future (up to one month):
 >
 > ```javascript
-> const timestamp = new Date('YYYY-MM-DD hh:mm:ss');
+> const timestamp = new Date("YYYY-MM-DD hh:mm:ss");
 > const sendAt = (timestamp.getTime() / 1000).toString();
 > ```
 >
@@ -45,10 +45,10 @@ The `smsId` uniquely identifies the extension from which you wish to send your m
 >
 > ```javascript
 > const data = {
-> 	smsId,
-> 	recipient,
-> 	message,
-> 	sendAt,
+>   smsId,
+>   recipient,
+>   message,
+>   sendAt,
 > };
 > ```
 >
@@ -67,7 +67,7 @@ npm run start
 The sipgate REST API is available under the following base URL:
 
 ```javascript
-const baseURL = 'https://api.sipgate.com/v2';
+const baseURL = "https://api.sipgate.com/v2";
 ```
 
 The API expects request data in JSON format. Thus the `Content-Type` header needs to be set accordingly.
@@ -82,9 +82,9 @@ The `data` object contains the `smsId`, `recipient` and `message` specified abov
 
 ```javascript
 const data = {
-	smsId,
-	recipient,
-	message,
+  smsId,
+  recipient,
+  message,
 };
 ```
 
@@ -93,19 +93,20 @@ We use the axios package for request execution. The
 
 ```javascript
 const requestOptions = {
-	method: 'POST',
-	headers: {
-		Accept: 'application/json',
-		'Content-Type': 'application/json',
-	},
-	auth: {
-		username,
-		password,
-	},
-	data,
+  method: "POST",
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
+  auth: {
+    username: tokenId,
+    password: token,
+  },
+  data,
 };
 ```
-> If OAuth should be used for `Authorization` instead of Basic Auth we do not suply the auth object in the request options. Instead we set the authorization header to `Bearer` followed by a space and the access token: ```Authorization: `Bearer ${accessToken}`,```. For an example application interacting with the sipgate API using OAuth see our [sipgate.io Node.js OAuth example](https://github.com/sipgate-io/sipgateio-oauth-node)
+
+> If OAuth should be used for `Authorization` instead of Basic Auth we do not suply the auth object in the request options. Instead we set the authorization header to `Bearer` followed by a space and the access token: `` Authorization: `Bearer ${accessToken}`, ``. For an example application interacting with the sipgate API using OAuth see our [sipgate.io Node.js OAuth example](https://github.com/sipgate-io/sipgateio-oauth-node)
 
 The `axios` instance takes the request URL and `requestOptions` as arguments and process the desired http request. The request URL consists of the base URL defined above and the endpoint `/sessions/sms`.
 
@@ -122,7 +123,6 @@ By default 'sipgate' will be used as the sender. It is only possible to change t
 3. Click the gear icon on the right side of the **Caller ID** box and enter the desired sender number.
 4. Proceed to follow the instructions on the website to verify the number.
 
-
 ### Web SMS Extensions
 
 A Web SMS extension consists of the letter 's' followed by a number (e.g. 's0'). The sipgate API uses the concept of Web SMS extensions to identify devices within your account that are enabled to send SMS. In this context the term 'device' does not necessarily refer to a hardware phone but rather a virtual connection.
@@ -131,10 +131,11 @@ You can use the sipgate api to find out what your extension is. For example:
 
 ```bash
 curl \
---user username:password \
+--user tokenId:token \
 https://api.sipgate.com/v2/{userId}/sms
 ```
-Replace `username` and `password` with your sipgate credentials and `userId` with your sipgate user id.
+
+Replace `tokenId` and `token` with your sipgate credentials and `userId` with your sipgate user id.
 
 The user id consists of the letter 'w' followed by a number (e.g. 'w0'). It can be found as follows:
 
@@ -156,8 +157,8 @@ Possible reasons are:
 | reason                                                                                                                                                | errorcode |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: |
 | bad request (e.g. request body fields are empty or only contain spaces, timestamp is invalid etc.)                                                    |    400    |
-| username and/or password are wrong                                                                                                                    |    401    |
-| insufficient account balance                                                                                                                  |    402    |
+| tokenId and/or token are wrong                                                                                                                        |    401    |
+| insufficient account balance                                                                                                                          |    402    |
 | no permission to use specified SMS extension (e.g. SMS feature not booked or user password must be reset in [web app](https://app.sipgate.com/login)) |    403    |
 | wrong REST API endpoint                                                                                                                               |    404    |
 | wrong request method                                                                                                                                  |    405    |
