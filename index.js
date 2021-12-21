@@ -39,4 +39,4 @@ axios(`${baseURL}/sessions/sms`, requestOptions)
 		console.log(`Status: ${response.status}`);
 		console.log(`Body: ${JSON.stringify(response.data)}`);
 	})
-	.catch(error => console.log('Error: ', error.message));
+	.catch(error => console.error('Error: ', error.message));
