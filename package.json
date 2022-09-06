@@ -11,6 +11,7 @@
 	"repository": "https://github.com/sipgate-io/sipgateio-sendsms-node",
 	"license": "Unlicense",
 	"dependencies": {
-		"axios": "^0.21.2"
+		"axios": "^0.21.2",
+		"dotenv": "^16.0.2"
 	}
 }

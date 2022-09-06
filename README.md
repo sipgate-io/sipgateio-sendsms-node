@@ -20,18 +20,15 @@ Install dependencies:
 npm install
 ```
 
-In order to run the code you have to set the following variables in [index.js](./index.js):
+Create the `.env` file by copying the `.env.example`. Set the values according to the comment above each variable.
 
-```javascript
-const tokenId = "YOUR_SIPGATE_TOKEN_ID";
-const token = "YOUR_SIPGATE_TOKEN";
-const recipient = "RECIPIENT_PHONE_NUMBER";
-const message = "YOUR_MESSAGE";
-
-const smsId = "YOUR_SIPGATE_SMS_EXTENSION";
-```
 The token should have the `sessions:sms:write` scope. For more information about personal access tokens visit https://www.sipgate.io/rest-api/authentication#personalAccessToken.
 
+In order to run the code you have to set the following variable in [index.js](./index.js):
+
+```javascript
+const message = "YOUR_MESSAGE";
+```
 
 The `smsId` uniquely identifies the extension from which you wish to send your message. Further explanation is given in the section [Web SMS Extensions](#web-sms-extensions).
 

@@ -1,13 +1,9 @@
 const axios = require('axios');
 
-const baseURL = 'https://api.sipgate.com/v2';
+require('dotenv').config();
+const {baseURL, tokenId, token, recipient, smsId} = process.env;
 
-const tokenId = 'YOUR_SIPGATE_TOKEN_ID';
-const token = 'YOUR_SIPGATE_TOKEN';
-const recipient = 'RECIPIENT_PHONE_NUMBER';
 const message = 'YOUR_MESSAGE';
-
-const smsId = 'YOUR_SIPGATE_SMS_EXTENSION';
 
 // Only needed when sending a scheduled sms
 
